@@ -37,8 +37,6 @@ download_release() {
   local url=$(get_download_url $version)
 
   echo "* Downloading $TOOL_NAME release $version..."
-  echo $url
-  echo $filename
   wget --quiet "$url" -O "$filename" || fail "Could not download $url"
 }
 
