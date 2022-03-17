@@ -14,7 +14,7 @@ fail() {
 
 curl_opts=(-fsSL)
 
-# NOTE: You might want to remove this if kubepug is not hosted on GitHub releases.
+# NOTE: You might want to remove this if <YOUR TOOL> is not hosted on GitHub releases.
 if [ -n "${GITHUB_API_TOKEN:-}" ]; then
   curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
 fi
@@ -32,7 +32,7 @@ list_github_tags() {
 
 list_all_versions() {
   # TODO: Adapt this. By default we simply list the tag names from GitHub releases.
-  # Change this function if kubepug has other means of determining installable versions.
+  # Change this function if <YOUR TOOL> has other means of determining installable versions.
   list_github_tags
 }
 
@@ -41,11 +41,27 @@ download_release() {
   version="$1"
   filename="$2"
 
-  # TODO: Adapt the release URL convention for kubepug
-  url="$GH_REPO/archive/v${version}.tar.gz"
+  local url=$(get_download_url $version)
 
   echo "* Downloading $TOOL_NAME release $version..."
-  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
+  wget --quiet "$url" -O "$filename" || fail "Could not download $url"
+}
+
+get_download_url() {
+  local version="$1"
+  local platform="$(get_platform)"
+  local arch="$(get_arch)"
+  echo "$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${platform}_${arch}.tar.gz"
+}
+
+get_platform() {
+  uname | tr '[:upper:]' '[:lower:]'
+}
+
+get_arch() {
+  local arch=$(uname -m)
+  [ "$arch" = "x86_64" ] && arch="amd64"
+  echo "$arch"
 }
 
 install_version() {
@@ -58,12 +74,12 @@ install_version() {
   fi
 
   (
-    mkdir -p "$install_path"
-    cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+    mkdir -p "$install_path/bin"
+    cp -r "$ASDF_DOWNLOAD_PATH/$TOOL_NAME" "$install_path/bin/"
 
-    # TODO: Asert kubepug executable exists.
+    # TODO: Asert <YOUR TOOL> executable exists.
     local tool_cmd
-    tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
+    tool_cmd="$TOOL_TEST"
     test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
     echo "$TOOL_NAME $version installation was successful!"
