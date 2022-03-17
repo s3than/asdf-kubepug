@@ -46,7 +46,7 @@ download_release() {
   echo "* Downloading $TOOL_NAME release $version..."
   echo $url
   echo $filename
-  wget --quiet "$url" -O "$filename" || fail "Could not download $url"
+  curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
 }
 
 get_download_url() {
