@@ -44,6 +44,8 @@ download_release() {
   local url=$(get_download_url $version)
 
   echo "* Downloading $TOOL_NAME release $version..."
+  echo $url
+  echo $filename
   wget --quiet "$url" -O "$filename" || fail "Could not download $url"
 }
 
@@ -51,6 +53,7 @@ get_download_url() {
   local version="$1"
   local platform="$(get_platform)"
   local arch="$(get_arch)"
+  # https://github.com/rikatz/kubepug/releases/download/v1.3.2/kubepug_linux_amd64.tar.gz
   echo "$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${platform}_${arch}.tar.gz"
 }
 
