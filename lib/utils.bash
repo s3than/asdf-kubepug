@@ -5,7 +5,7 @@ set -euo pipefail
 # TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for kubepug.
 GH_REPO="https://github.com/rikatz/kubepug"
 TOOL_NAME="kubepug"
-TOOL_TEST="kubepug --help"
+TOOL_TEST="kubepug"
 
 fail() {
   echo -e "asdf-$TOOL_NAME: $*"
