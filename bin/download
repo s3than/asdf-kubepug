@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-ASDF_DOWNLOAD_PATH="/home/ubuntu/.asdf/downloads/kubepug/1.3.2"
-TOOL_NAME=kubepug
-ASDF_INSTALL_VERSION=1.3.2
-
 set -euo pipefail
 
 current_script_path=${BASH_SOURCE[0]}
