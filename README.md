@@ -12,8 +12,6 @@
 Plugin:
 
 ```shell
-asdf plugin add kubepug
-# or
 asdf plugin add kubepug https://github.com/s3than/asdf-kubepug.git
 ```
 
