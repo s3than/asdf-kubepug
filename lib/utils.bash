@@ -66,7 +66,7 @@ download_release() {
 	filename="$2"
 
 	# TODO: Adapt the release URL convention for kubepug
-  # https://github.com/kubepug/kubepug/releases/download/v1.7.1/kubepug_linux_arm64.tar.gz
+	# https://github.com/kubepug/kubepug/releases/download/v1.7.1/kubepug_linux_arm64.tar.gz
 	url="$GH_REPO/releases/download/v${version}/kubepug_${platform}_${cpu}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."

@@ -3,7 +3,7 @@
 # asdf-kubepug [![Build](https://github.com/s3than/asdf-kubepug/actions/workflows/build.yml/badge.svg)](https://github.com/s3than/asdf-kubepug/actions/workflows/build.yml) [![Lint](https://github.com/s3than/asdf-kubepug/actions/workflows/lint.yml/badge.svg)](https://github.com/s3than/asdf-kubepug/actions/workflows/lint.yml)
 
 
-[kubepug](https://github.com/rikatz/kubepug) plugin for the [asdf version manager](https://asdf-vm.com).
+[kubepug](https://github.com/kubepug/kubepug) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
